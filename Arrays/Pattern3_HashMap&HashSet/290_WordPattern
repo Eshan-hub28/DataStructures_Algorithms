@@ -1,0 +1,72 @@
+import java.util.HashMap;
+
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+
+        // Map pattern character -> word
+        // Example: a -> dog
+        HashMap<Character, String> map1 = new HashMap<>();
+
+        // Map word -> pattern character
+        // Example: dog -> a
+        // This ensures two characters cannot map to the same word
+        HashMap<String, Character> map2 = new HashMap<>();
+
+        // Convert sentence into individual words
+        String[] words = s.split(" ");
+
+        // Number of pattern characters and words should be equal
+        if(pattern.length() != words.length) {
+            return false;
+        }
+
+
+        // Traverse both pattern and words together
+        for(int i = 0; i < pattern.length(); i++) {
+
+            char ch = pattern.charAt(i);  // current pattern character
+            String word = words[i];       // current word
+
+
+            // Check character -> word mapping
+            if(map1.containsKey(ch)) {
+
+                // Character already has a mapped word
+                // Example: a was already mapped to dog
+                // If now a maps to cat, pattern breaks
+                if(!map1.get(ch).equals(word)) {
+                    return false;
+                }
+
+            } else {
+
+                // First time seeing this character
+                // Create mapping
+                map1.put(ch, word);
+            }
+
+
+            // Check word -> character mapping
+            if(map2.containsKey(word)) {
+
+                // Word already belongs to another character
+                // Example:
+                // dog -> a already exists
+                // but now dog -> b comes
+                if(map2.get(word) != ch) {
+                    return false;
+                }
+
+            } else {
+
+                // First time seeing this word
+                // Create reverse mapping
+                map2.put(word, ch);
+            }
+        }
+
+
+        // All mappings are valid
+        return true;
+    }
+}
