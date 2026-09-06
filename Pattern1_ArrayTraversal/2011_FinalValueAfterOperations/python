@@ -1,0 +1,10 @@
+class Solution(object):
+    def finalValueAfterOperations(self, operations):
+        count=0
+        for word in operations:
+            if word[1]=='-':
+                count-=1
+            else:
+                count+=1
+        return count
+        

@@ -1,0 +1,46 @@
+class NumArray {
+
+    // This variable belongs to the object.
+    // Constructor and sumRange() both can access it.
+    int[] prefix;
+
+
+    // Constructor runs when:
+    // NumArray obj = new NumArray(nums);
+    public NumArray(int[] nums) {
+
+        // Create prefix array of same size as nums
+        prefix = new int[nums.length];
+
+
+        // First element remains same
+        prefix[0] = nums[0];
+
+
+        // Build prefix sum array
+        for(int i = 1; i < nums.length; i++) {
+
+            // Current prefix =
+            // previous prefix + current number
+            prefix[i] = prefix[i-1] + nums[i];
+        }
+    }
+
+
+    public int sumRange(int left, int right) {
+
+
+        // If range starts from index 0,
+        // there is no left-1 index
+        if(left == 0) {
+
+            return prefix[right];
+        }
+
+
+        // Sum from left to right:
+        // total sum till right
+        // minus sum before left
+        return prefix[right] - prefix[left-1];
+    }
+}

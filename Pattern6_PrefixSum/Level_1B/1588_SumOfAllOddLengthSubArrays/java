@@ -1,0 +1,45 @@
+class Solution {
+    public int sumOddLengthSubarrays(int[] nums) {
+
+        int[] prefix = new int[nums.length];
+
+        // Build prefix sum
+        prefix[0] = nums[0];
+
+        for(int i = 1; i < nums.length; i++) {
+            prefix[i] = prefix[i - 1] + nums[i];
+        }
+
+        int ans = 0;
+
+        // Choose starting index
+        for(int left = 0; left < nums.length; left++) {
+
+            // Choose ending index
+            for(int right = left; right < nums.length; right++) {
+
+                // Length of subarray
+                int length = right - left + 1;
+
+                // Only odd length
+                if(length % 2 != 0) {
+
+                    int sum;
+
+                    if(left == 0) {
+                        sum = prefix[right];
+                    }
+                    else {
+                        // Remove everything before left
+                        *//read .md file to understand*
+                        sum = prefix[right] - prefix[left - 1];
+                    }
+
+                    ans += sum;
+                }
+            }
+        }
+
+        return ans;
+    }
+}

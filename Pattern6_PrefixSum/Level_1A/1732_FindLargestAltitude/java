@@ -1,0 +1,24 @@
+class Solution {
+    public int largestAltitude(int[] gain) {
+
+        // prefix[i] = altitude at that point
+        int[] prefix = new int[gain.length + 1];
+
+        // Starting altitude is 0
+        prefix[0] = 0;
+
+        // Highest altitude starts at 0
+        int maxi = 0;
+
+        for(int i = 1; i <= gain.length; i++) {
+
+            // gain[i-1] because prefix has one extra position
+            prefix[i] = prefix[i - 1] + gain[i - 1];
+
+            // Keep track of highest altitude
+            maxi = Math.max(maxi, prefix[i]);
+        }
+
+        return maxi;
+    }
+}

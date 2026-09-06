@@ -1,0 +1,14 @@
+class Solution(object):
+    def shuffle(self, nums, n):
+        arr=[0]*len(nums)
+        k=0
+        j=1
+        for i in range(len(nums)):
+            if i<n:
+                arr[k]=nums[i]
+                k+=2
+            else:
+                arr[j]=nums[i]
+                j+=2
+        return arr
+        

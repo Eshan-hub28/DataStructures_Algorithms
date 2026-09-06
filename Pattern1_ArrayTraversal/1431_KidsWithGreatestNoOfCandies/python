@@ -1,0 +1,12 @@
+class Solution:
+    def kidsWithCandies(self, candies, extraCandies):
+        maxi=max(candies)
+        result=[]
+        for num in candies:
+            sum=num+extraCandies
+            if sum>=maxi:
+                result.append(True)
+            else:
+                result.append(False)
+        return result
+        

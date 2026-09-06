@@ -1,0 +1,22 @@
+##please read the .md file ,
+class Solution {
+    public int waysToSplitArray(int[] nums) {
+        long[] prefix=new long[nums.length];
+        prefix[0]=nums[0];
+        for(int i=1;i<nums.length;i++){
+            prefix[i]=prefix[i-1]+nums[i];
+        }
+        long total=prefix[nums.length-1];
+        int count=0;
+        //know the reason why we use long instead of int because the sum of the array can exceed the range of int(read .md file)
+        //know the reason why we use nums.length-1 because we need to split the array into two non-empty subarrays(read .md file)
+        for(int i=0;i<nums.length-1;i++){
+            long leftSum=prefix[i];
+            long rightSum=total-prefix[i];
+            if(leftSum>=rightSum){
+                count++;
+            }
+        }
+        return count;
+    }
+}

@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        HashMap<String,Integer> map=new HashMap<>();
+        for(String word:words){
+            map.put(word,map.getOrDefault(word,0)+1);
+        }
+        List<Map.Entry<String,Integer>> list=new ArrayList<>(map.entrySet());
+        List<String> output=new ArrayList<>();
+        for(int i=0;i<k;i++){
+            int maxFreq=0;
+            String maxWord="";
+            for(Map.Entry<String,Integer> entry:list){
+                int freq=entry.getValue();
+                String word=entry.getKey();
+                if(freq>maxFreq || freq==maxFreq && word.compareTo(maxWord)<0){
+                    maxFreq=freq;
+                    maxWord=word;
+                }
+            }
+            output.add(maxWord);
+            map.remove(maxWord);
+            list=new ArrayList<>(map.entrySet());
+        }
+        return output;
+    }
+}

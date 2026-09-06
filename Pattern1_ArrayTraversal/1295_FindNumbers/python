@@ -1,0 +1,14 @@
+class Solution:
+    def findNumbers(self, nums):
+        count=0
+        for i in range(len(nums)):
+            temp=nums[i]
+            digits=0
+            while(temp>0):
+                digits+=1
+                temp/=10
+            if digits%2==0:
+                count+=1
+        return count
+
+        
