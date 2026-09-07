@@ -1,0 +1,21 @@
+#java--->python
+class Solution(object):
+    def checkIfPangram(self, sentence):
+        set1=set()
+        for c in sentence:
+            set1.add(c)
+        if len(set1)==26:
+            return True
+        else:
+            return False
+
+#optimal approach
+class Solution(object):
+    def checkIfPangram(self, sentence):
+        """
+        :type sentence: str
+        :rtype: bool
+        """
+        letters=set(sentence)
+
+        return len(letters)==26

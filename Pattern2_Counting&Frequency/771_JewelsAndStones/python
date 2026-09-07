@@ -1,0 +1,19 @@
+##java--->Python
+class Solution(object):
+    def numJewelsInStones(self, jewels, stones):
+        count=0
+        for i in range(len(jewels)):
+            for j in range(len(stones)):
+                if jewels[i]==stones[j]:
+                    count+=1
+        return count
+    
+##optimal approach
+class Solution(object):
+    def numJewelsInStones(self, jewels, stones):
+        count=0
+        for stone in stones:
+            if stone in jewels:
+                count+=1
+        return count
+        

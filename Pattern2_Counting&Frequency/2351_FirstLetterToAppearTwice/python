@@ -1,0 +1,17 @@
+class Solution(object):
+    def repeatedCharacter(self, s):
+        freq=[0]*26
+        for ch in s:
+            freq[ord(ch)-ord('a')]+=1
+            if freq[ord(ch)-ord('a')]==2:
+                return ch
+    
+    #Optimal approach
+    class Solution(object):
+        def repeatedCharacter(self, s):
+            seen=set()
+            for char in s:
+                if char in seen:
+                    return char
+                seen.add(char) 
+

@@ -1,0 +1,17 @@
+class Solution:
+    def uniqueOccurrences(self, arr):
+        freq = {}
+
+        # Count frequency of each number
+        for num in arr:
+            freq[num] = freq.get(num, 0) + 1
+
+        # Check whether frequencies are unique
+        seen = set()
+
+        for count in freq.values():
+            if count in seen:
+                return False
+            seen.add(count)
+
+        return True
