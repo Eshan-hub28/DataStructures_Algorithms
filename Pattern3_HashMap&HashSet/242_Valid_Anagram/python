@@ -1,0 +1,15 @@
+class Solution(object):
+    def isAnagram(self, s, t):
+        if len(s)!=len(t):
+            return False
+        freq=[0]*26
+        for i in range(len(s)):
+            ch1=s[i]
+            ch2=t[i]
+            freq[ord(ch1)-ord('a')]+=1
+            freq[ord(ch2)-ord('a')]-=1
+        for i in range(26):
+            if freq[i]!=0:
+                return False
+        return True
+        
